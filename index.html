@@ -1,0 +1,1116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Prajit Giri | Portfolio</title>
+  <meta name="description" content="Prajit Giri — Finance Graduate, Data Analyst, and Cybersecurity Enthusiast. Projects in fraud detection, credit risk modeling, cyber log analysis, and civic data dashboards." />
+  <meta name="author" content="Prajit Giri" />
+  <meta name="keywords" content="Prajit Giri, finance, data analyst, cybersecurity, fraud detection, credit risk, Python, portfolio" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Prajit Giri | Portfolio" />
+  <meta property="og:description" content="Finance Graduate | Data Analyst | Cybersecurity Enthusiast" />
+  <meta property="og:type" content="website" />
+
+  <!-- Icons -->
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <style>
+    :root{
+      --bg: #0b1220;
+      --surface: rgba(255,255,255,0.06);
+      --surface-2: rgba(255,255,255,0.09);
+      --text: rgba(255,255,255,0.92);
+      --muted: rgba(255,255,255,0.70);
+      --muted-2: rgba(255,255,255,0.55);
+      --border: rgba(255,255,255,0.12);
+      --shadow: 0 18px 50px rgba(0,0,0,0.45);
+      --accent: #ff4d4d;
+      --accent-2: #35b8ff;
+      --accent-3: #7c5cff;
+      --success: #4ade80;
+      --warn: #fbbf24;
+
+      --radius: 16px;
+      --radius-sm: 12px;
+      --transition: 220ms ease;
+    }
+
+    /* Light theme */
+    .light-theme{
+      --bg: #f6f7fb;
+      --surface: rgba(0,0,0,0.04);
+      --surface-2: rgba(0,0,0,0.06);
+      --text: rgba(10, 15, 25, 0.92);
+      --muted: rgba(10, 15, 25, 0.72);
+      --muted-2: rgba(10, 15, 25, 0.56);
+      --border: rgba(10,15,25,0.12);
+      --shadow: 0 18px 50px rgba(10,15,25,0.12);
+    }
+
+    *{ box-sizing:border-box; margin:0; padding:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; }
+    html{ scroll-behavior:smooth; }
+    body{
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Decorative background blobs */
+    .bg-blobs{
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: -2;
+      overflow: hidden;
+    }
+    .blob{
+      position:absolute;
+      width: 520px;
+      height: 520px;
+      filter: blur(60px);
+      opacity: 0.55;
+      transform: translate3d(0,0,0);
+      animation: drift 16s ease-in-out infinite;
+    }
+    .blob.one{ background: radial-gradient(circle at 30% 30%, var(--accent-2), transparent 55%); top:-160px; left:-140px; }
+    .blob.two{ background: radial-gradient(circle at 30% 30%, var(--accent-3), transparent 58%); bottom:-220px; right:-160px; animation-duration: 20s; }
+    .blob.three{ background: radial-gradient(circle at 40% 40%, var(--accent), transparent 55%); top: 38%; left: 52%; width: 420px; height: 420px; opacity:0.35; animation-duration: 22s; }
+
+    @keyframes drift{
+      0%,100% { transform: translate(0px, 0px) scale(1); }
+      50% { transform: translate(40px, -30px) scale(1.05); }
+    }
+
+    /* Top progress glow line */
+    .top-glow{
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      width: 0%;
+      background: linear-gradient(90deg, var(--accent-2), var(--accent-3), var(--accent));
+      z-index: 9999;
+      box-shadow: 0 0 18px rgba(53,184,255,0.55);
+    }
+
+    .container{
+      width: min(1150px, 92%);
+      margin: 0 auto;
+    }
+
+    header{
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      background: linear-gradient(to bottom, rgba(0,0,0,0.35), rgba(0,0,0,0.12));
+      border-bottom: 1px solid var(--border);
+    }
+    .light-theme header{
+      background: linear-gradient(to bottom, rgba(255,255,255,0.8), rgba(255,255,255,0.55));
+    }
+
+    nav{
+      height: 72px;
+      display:flex;
+      align-items:center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap: 12px;
+      text-decoration:none;
+      color: var(--text);
+      font-weight: 800;
+      letter-spacing: 0.2px;
+    }
+    .brand-badge{
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--accent-2), var(--accent-3));
+      display:grid;
+      place-items:center;
+      box-shadow: 0 10px 30px rgba(124,92,255,0.25);
+      border: 1px solid rgba(255,255,255,0.18);
+    }
+    .brand-badge span{
+      font-size: 16px;
+      font-weight: 900;
+      color: rgba(255,255,255,0.95);
+    }
+
+    .nav-links{
+      display:flex;
+      list-style:none;
+      gap: 22px;
+      align-items:center;
+    }
+
+    .nav-links a{
+      text-decoration:none;
+      color: var(--muted);
+      font-weight: 650;
+      font-size: 0.95rem;
+      position: relative;
+      padding: 8px 0;
+      transition: color var(--transition);
+    }
+    .nav-links a:hover{ color: var(--text); }
+    .nav-links a.active{ color: var(--text); }
+    .nav-links a::after{
+      content:"";
+      position:absolute;
+      left:0;
+      bottom: 2px;
+      height: 2px;
+      width: 0%;
+      background: linear-gradient(90deg, var(--accent-2), var(--accent));
+      transition: width var(--transition);
+      border-radius: 999px;
+    }
+    .nav-links a:hover::after,
+    .nav-links a.active::after{ width: 100%; }
+
+    .nav-actions{
+      display:flex;
+      align-items:center;
+      gap: 10px;
+    }
+
+    .icon-btn{
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text);
+      display:grid;
+      place-items:center;
+      cursor:pointer;
+      transition: transform var(--transition), background var(--transition);
+    }
+    .icon-btn:hover{ transform: translateY(-2px); background: var(--surface-2); }
+
+    .menu-toggle{ display:none; }
+
+    /* Sections */
+    section{ padding: 96px 0; }
+    section#home{ padding: 120px 0 92px; }
+
+    .section-title{
+      display:flex;
+      flex-direction:column;
+      gap: 10px;
+      align-items:center;
+      text-align:center;
+      margin-bottom: 42px;
+    }
+    .section-title h2{
+      font-size: clamp(1.7rem, 2.4vw, 2.25rem);
+      letter-spacing: -0.5px;
+    }
+    .section-title p{
+      color: var(--muted);
+      max-width: 760px;
+    }
+
+    /* Hero */
+    .hero{
+      min-height: 92vh;
+      display:flex;
+      align-items:center;
+      position: relative;
+    }
+    .hero-grid{
+      display:grid;
+      grid-template-columns: 1.25fr 0.75fr;
+      gap: 28px;
+      align-items:center;
+    }
+
+    .hero-card{
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      border-radius: 26px;
+      padding: 34px;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow:hidden;
+    }
+    .hero-card::before{
+      content:"";
+      position:absolute;
+      inset:-2px;
+      background: radial-gradient(circle at 18% 28%, rgba(53,184,255,0.18), transparent 55%),
+                  radial-gradient(circle at 78% 28%, rgba(124,92,255,0.18), transparent 55%),
+                  radial-gradient(circle at 55% 82%, rgba(255,77,77,0.12), transparent 62%);
+      z-index: 0;
+    }
+    .hero-card > *{ position: relative; z-index: 1; }
+
+    .kicker{
+      display:inline-flex;
+      align-items:center;
+      gap: 10px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.05);
+      color: var(--muted);
+      font-weight: 650;
+      font-size: 0.92rem;
+      width: fit-content;
+      margin-bottom: 16px;
+    }
+    .kicker i{ color: var(--accent-2); }
+
+    .hero h1{
+      font-size: clamp(2.4rem, 4.2vw, 3.6rem);
+      letter-spacing: -1.2px;
+      line-height: 1.1;
+      margin-bottom: 12px;
+    }
+    .hero .subtitle{
+      font-size: 1.08rem;
+      color: var(--muted);
+      max-width: 64ch;
+      margin-bottom: 22px;
+    }
+
+    .pill-row{
+      display:flex;
+      flex-wrap:wrap;
+      gap: 10px;
+      margin: 18px 0 26px;
+    }
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--muted);
+      font-weight: 650;
+      font-size: 0.92rem;
+    }
+    .pill i{ color: var(--success); }
+
+    .btn-row{
+      display:flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      align-items:center;
+      margin-top: 6px;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      gap: 10px;
+      padding: 12px 16px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      text-decoration:none;
+      font-weight: 750;
+      cursor:pointer;
+      transition: transform var(--transition), background var(--transition), border var(--transition);
+      user-select:none;
+    }
+    .btn.primary{
+      background: linear-gradient(135deg, var(--accent), #ff7a59);
+      border-color: rgba(255,255,255,0.18);
+      color: white;
+      box-shadow: 0 18px 40px rgba(255,77,77,0.22);
+    }
+    .btn.primary:hover{ transform: translateY(-2px); }
+    .btn.secondary{
+      background: var(--surface);
+      color: var(--text);
+    }
+    .btn.secondary:hover{ transform: translateY(-2px); background: var(--surface-2); }
+
+    .hero-side{
+      display:flex;
+      flex-direction:column;
+      gap: 14px;
+    }
+    .stat-card{
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      padding: 18px;
+      box-shadow: 0 16px 40px rgba(0,0,0,0.22);
+    }
+    .stat-card h3{
+      font-size: 1.05rem;
+      letter-spacing: -0.2px;
+      margin-bottom: 6px;
+    }
+    .stat-card p{ color: var(--muted); font-size: 0.95rem; }
+    .stat-meta{
+      display:flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 12px;
+    }
+    .chip{
+      font-size: 0.86rem;
+      font-weight: 750;
+      padding: 7px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.05);
+      color: var(--muted);
+    }
+    .chip.blue{ color: rgba(53,184,255,0.95); }
+    .chip.purple{ color: rgba(124,92,255,0.95); }
+    .chip.red{ color: rgba(255,77,77,0.95); }
+
+    /* About */
+    .about-wrap{
+      display:grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 26px;
+      align-items:center;
+    }
+    .card{
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: var(--shadow);
+    }
+    .card h3{
+      font-size: 1.4rem;
+      margin-bottom: 10px;
+      letter-spacing: -0.4px;
+    }
+    .card p{ color: var(--muted); }
+
+    .profile{
+      display:flex;
+      align-items:center;
+      gap: 16px;
+    }
+    .profile img{
+      width: 92px;
+      height: 92px;
+      border-radius: 22px;
+      object-fit: cover;
+      border: 1px solid var(--border);
+      box-shadow: 0 18px 40px rgba(0,0,0,0.28);
+    }
+    .profile .name{
+      font-weight: 900;
+      font-size: 1.15rem;
+      margin-bottom: 2px;
+    }
+    .profile .role{
+      color: var(--muted);
+      font-weight: 650;
+      margin-bottom: 10px;
+    }
+    .profile .mini{
+      display:flex;
+      flex-wrap:wrap;
+      gap: 10px;
+    }
+    .mini a{
+      text-decoration:none;
+      color: var(--muted);
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.05);
+      padding: 8px 10px;
+      border-radius: 12px;
+      transition: transform var(--transition), background var(--transition);
+      font-weight: 750;
+      font-size: 0.9rem;
+    }
+    .mini a:hover{ transform: translateY(-2px); background: var(--surface-2); color: var(--text); }
+
+    /* Skills */
+    .grid-3{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .skill-list{ list-style:none; margin-top: 12px; }
+    .skill-list li{
+      margin: 10px 0;
+      color: var(--muted);
+      padding-left: 22px;
+      position: relative;
+      font-weight: 650;
+    }
+    .skill-list li::before{
+      content:"▹";
+      position:absolute;
+      left:0;
+      color: var(--accent-2);
+      font-weight: 900;
+    }
+
+    /* Projects */
+    .projects{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .project-card{
+      overflow:hidden;
+      border-radius: 18px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      box-shadow: var(--shadow);
+      transition: transform var(--transition);
+    }
+    .project-card:hover{ transform: translateY(-6px); }
+
+    .project-img{
+      width:100%;
+      height: 190px;
+      object-fit: cover;
+      display:block;
+      border-bottom: 1px solid var(--border);
+    }
+    .project-body{ padding: 18px; }
+    .project-body h3{
+      font-size: 1.15rem;
+      margin-bottom: 8px;
+      letter-spacing: -0.2px;
+    }
+    .tags{ display:flex; flex-wrap:wrap; gap:8px; margin: 10px 0 12px; }
+    .tag{
+      font-size: 0.82rem;
+      font-weight: 800;
+      color: var(--muted);
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.05);
+      padding: 6px 10px;
+      border-radius: 999px;
+    }
+    .project-body p{ color: var(--muted); margin-bottom: 14px; }
+    .project-body .btn{ width: fit-content; }
+
+    /* Experience timeline */
+    .timeline{
+      display:grid;
+      gap: 14px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .role-card{
+      display:flex;
+      gap: 14px;
+      align-items:flex-start;
+      padding: 18px;
+      border-radius: 18px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      box-shadow: var(--shadow);
+    }
+    .dot{
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      margin-top: 6px;
+      background: linear-gradient(135deg, var(--accent-2), var(--accent-3));
+      box-shadow: 0 0 0 6px rgba(53,184,255,0.12);
+      flex: 0 0 auto;
+    }
+    .role-card h3{ font-size: 1.05rem; margin-bottom: 4px; }
+    .role-card .org{ color: var(--muted); font-weight: 750; }
+    .role-card .date{ color: rgba(255,77,77,0.9); font-weight: 850; margin: 6px 0 6px; }
+    .role-card p{ color: var(--muted); }
+
+    /* Contact */
+    .contact-grid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      align-items: stretch;
+    }
+    .contact-item{
+      display:flex;
+      gap: 14px;
+      align-items:flex-start;
+      padding: 18px;
+      border-radius: 18px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      box-shadow: var(--shadow);
+    }
+    .contact-icon{
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      display:grid;
+      place-items:center;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.06);
+      color: var(--text);
+      flex: 0 0 auto;
+    }
+    .contact-item h3{ font-size: 1.02rem; margin-bottom: 2px; }
+    .contact-item p{ color: var(--muted); font-weight: 650; }
+    .email-cta{
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      gap: 12px;
+    }
+    .email-cta p{ color: var(--muted); }
+
+    footer{
+      border-top: 1px solid var(--border);
+      padding: 28px 0;
+      background: rgba(0,0,0,0.12);
+    }
+    .light-theme footer{ background: rgba(255,255,255,0.5); }
+    .footer-row{
+      display:flex;
+      justify-content: space-between;
+      align-items:center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .social{
+      display:flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .social a{
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      display:grid;
+      place-items:center;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text);
+      text-decoration:none;
+      transition: transform var(--transition), background var(--transition);
+    }
+    .social a:hover{ transform: translateY(-2px); background: var(--surface-2); }
+    .copyright{ color: var(--muted); font-weight: 650; }
+
+    /* Responsive */
+    @media (max-width: 980px){
+      .hero-grid{ grid-template-columns: 1fr; }
+      .about-wrap{ grid-template-columns: 1fr; }
+      .grid-3{ grid-template-columns: 1fr; }
+      .projects{ grid-template-columns: 1fr; }
+      .contact-grid{ grid-template-columns: 1fr; }
+    }
+    @media (max-width: 820px){
+      .menu-toggle{ display:grid; }
+      .nav-links{
+        position: fixed;
+        top: 72px;
+        left: 0;
+        right: 0;
+        height: calc(100vh - 72px);
+        background: rgba(0,0,0,0.65);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border-top: 1px solid var(--border);
+        display:flex;
+        flex-direction: column;
+        gap: 14px;
+        padding: 26px;
+        transform: translateY(-120%);
+        transition: transform var(--transition);
+      }
+      .light-theme .nav-links{ background: rgba(255,255,255,0.85); }
+      .nav-links.active{ transform: translateY(0%); }
+      .nav-links a{ font-size: 1.05rem; }
+    }
+
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce){
+      *{ transition: none !important; animation: none !important; scroll-behavior: auto !important; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="top-glow" id="topGlow"></div>
+
+  <!-- Decorative background -->
+  <div class="bg-blobs" aria-hidden="true">
+    <div class="blob one"></div>
+    <div class="blob two"></div>
+    <div class="blob three"></div>
+  </div>
+
+  <!-- Header -->
+  <header>
+    <div class="container">
+      <nav aria-label="Primary">
+        <a class="brand" href="#home">
+          <div class="brand-badge" aria-hidden="true"><span>PG</span></div>
+          <span>Prajit Giri</span>
+        </a>
+
+        <ul class="nav-links" id="navLinks">
+          <li><a href="#home" class="nav-link active">Home</a></li>
+          <li><a href="#about" class="nav-link">About</a></li>
+          <li><a href="#skills" class="nav-link">Skills</a></li>
+          <li><a href="#projects" class="nav-link">Projects</a></li>
+          <li><a href="#experience" class="nav-link">Experience</a></li>
+          <li><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+
+        <div class="nav-actions">
+          <button class="icon-btn" id="themeToggle" aria-label="Toggle theme" title="Toggle theme">
+            <i class="fa-solid fa-moon"></i>
+          </button>
+
+          <button class="icon-btn menu-toggle" id="menuToggle" aria-label="Open menu" title="Menu">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero" id="home">
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-card">
+          <div class="kicker"><i class="fa-solid fa-shield-halved"></i> Finance • Data • Cybersecurity</div>
+          <h1>Prajit Giri</h1>
+          <p class="subtitle">
+            Finance Graduate | Data Analyst | Cybersecurity Enthusiast
+            <br />
+            I build practical, portfolio-ready projects in fraud detection, credit risk modeling, security log analysis, and civic data dashboards.
+          </p>
+
+          <div class="pill-row">
+            <span class="pill"><i class="fa-solid fa-check"></i> Python + Analytics</span>
+            <span class="pill"><i class="fa-solid fa-check"></i> Risk & Controls</span>
+            <span class="pill"><i class="fa-solid fa-check"></i> SOC-style Detection</span>
+          </div>
+
+          <div class="btn-row">
+            <a class="btn primary" href="#projects"><i class="fa-solid fa-layer-group"></i> View Projects</a>
+            <a class="btn secondary" href="mailto:prajitgiri1221@gmail.com?subject=Portfolio%20Inquiry%20-%20Prajit%20Giri">
+              <i class="fa-solid fa-envelope"></i> Email Me
+            </a>
+          </div>
+        </div>
+
+        <div class="hero-side">
+          <div class="stat-card">
+            <h3>Quick Snapshot</h3>
+            <p>Focused on job-ready results: clean documentation, realistic datasets, and clear metrics.</p>
+            <div class="stat-meta">
+              <span class="chip blue"><i class="fa-solid fa-chart-line"></i> Analytics</span>
+              <span class="chip purple"><i class="fa-solid fa-code"></i> Python</span>
+              <span class="chip red"><i class="fa-solid fa-bug-slash"></i> Cyber</span>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <h3>Open to Roles</h3>
+            <p>Entry-level / early-career: Data, Risk, Compliance, Fraud Ops, Cybersecurity Analyst.</p>
+          </div>
+
+          <div class="stat-card">
+            <h3>Based In</h3>
+            <p>San Antonio, TX • U.S. Permanent Resident</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about">
+    <div class="container">
+      <div class="section-title">
+        <h2>About Me</h2>
+        <p>Finance + analytics mindset with a security lens — I enjoy turning messy data into decisions.</p>
+      </div>
+
+      <div class="about-wrap">
+        <div class="card">
+          <h3>Finance Professional & Data Analyst</h3>
+          <p>
+            Detail-oriented finance graduate with hands-on experience in accounting concepts, internal controls, fraud detection logic,
+            data analysis, and public-safety operations. Skilled in documentation, financial oversight analytics, and process improvement.
+          </p>
+          <p style="margin-top:12px;">
+            Currently transitioning into cybersecurity and digital risk analysis with a strong background in quantitative modeling,
+            fraud detection projects, and security operations.
+          </p>
+          <p style="margin-top:12px;">
+            International experience in Nepal, Bangladesh, and the United States.
+          </p>
+
+          <div class="btn-row" style="margin-top: 18px;">
+            <a class="btn secondary" href="mailto:prajitgiri1221@gmail.com?subject=Hello%20Prajit%20-%20Portfolio">
+              <i class="fa-solid fa-paper-plane"></i> Contact
+            </a>
+            <a class="btn secondary" href="#experience">
+              <i class="fa-solid fa-briefcase"></i> Experience
+            </a>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="profile">
+            <img src="profile 2.png" alt="Prajit Giri" />
+            <div>
+              <div class="name">Prajit Giri</div>
+              <div class="role">Finance • Data • Cybersecurity</div>
+              <div class="mini">
+                <a href="https://github.com/prajit100" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i> GitHub</a>
+                <a href="https://www.linkedin.com/in/drprazeet/" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+              </div>
+              <div class="mini" style="margin-top:10px;">
+                <a href="https://x.com/prajit_giri" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-x-twitter"></i> X</a>
+                <a href="https://www.facebook.com/dr.prazeet" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-facebook"></i> Facebook</a>
+              </div>
+            </div>
+          </div>
+
+          <div style="margin-top: 18px;">
+            <div class="tags">
+              <span class="tag">Python</span>
+              <span class="tag">Excel</span>
+              <span class="tag">Power BI</span>
+              <span class="tag">Risk</span>
+              <span class="tag">Fraud</span>
+              <span class="tag">Cyber</span>
+            </div>
+            <p style="color: var(--muted);">
+              Best contact: <strong style="color: var(--text);">prajitgiri1221@gmail.com</strong>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section id="skills">
+    <div class="container">
+      <div class="section-title">
+        <h2>Technical & Analytical Skills</h2>
+        <p>Tools and strengths I use to deliver clean, understandable, and useful work.</p>
+      </div>
+
+      <div class="grid-3">
+        <div class="card">
+          <h3><i class="fa-solid fa-chart-simple" style="color: var(--accent-2);"></i> Data Analytics</h3>
+          <ul class="skill-list">
+            <li>Python (pandas, NumPy, scikit-learn basics)</li>
+            <li>Jupyter Notebooks</li>
+            <li>Excel (advanced formulas, pivot tables)</li>
+            <li>Power BI & Tableau</li>
+            <li>Data Visualization</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3><i class="fa-solid fa-scale-balanced" style="color: var(--warn);"></i> Finance & Risk</h3>
+          <ul class="skill-list">
+            <li>Credit Risk (DTI, LTV, default probability)</li>
+            <li>Portfolio Analysis</li>
+            <li>Financial Modeling</li>
+            <li>Budgeting & Forecasting</li>
+            <li>Fraud Detection Systems</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3><i class="fa-solid fa-code" style="color: var(--accent-3);"></i> Programming & Tools</h3>
+          <ul class="skill-list">
+            <li>HTML / CSS / JavaScript</li>
+            <li>Basic React</li>
+            <li>Documentation & reporting</li>
+            <li>Internal controls mindset</li>
+            <li>Process improvement</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects">
+    <div class="container">
+      <div class="section-title">
+        <h2>Projects</h2>
+        <p>Clear problems, realistic data, and simple outputs that recruiters can understand quickly.</p>
+      </div>
+
+      <div class="projects">
+        <article class="project-card">
+          <img src="1.png" alt="Bank Fraud Detection System" class="project-img" />
+          <div class="project-body">
+            <h3>Bank Fraud Detection System</h3>
+            <div class="tags">
+              <span class="tag">Python</span>
+              <span class="tag">Data Analysis</span>
+              <span class="tag">Fraud Detection</span>
+            </div>
+            <p>Python-based fraud detection using synthetic transaction data with rule-based checks for unusual patterns and high-risk activity.</p>
+            <a class="btn secondary" target="_blank" rel="noopener noreferrer"
+               href="https://docs.google.com/document/d/1VszpjhWhB3hKlPH2AMrD-56WhoDQTThXdvSRem30Ql8/edit?usp=sharing">
+              <i class="fa-solid fa-arrow-up-right-from-square"></i> View Project
+            </a>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <img src="2.png" alt="Loan Risk & Credit Scoring Model" class="project-img" />
+          <div class="project-body">
+            <h3>Loan Risk & Credit Scoring Model</h3>
+            <div class="tags">
+              <span class="tag">Risk Analysis</span>
+              <span class="tag">Python</span>
+              <span class="tag">Logistic Regression</span>
+            </div>
+            <p>Synthetic portfolio of 500 applicants with underwriting logic, risk metrics, and default probability modeling.</p>
+            <a class="btn secondary" target="_blank" rel="noopener noreferrer"
+               href="https://docs.google.com/document/d/1hyaNKKr0tQdayR3g7eFgOvuhZVcdZn3Y/edit?usp=sharing&ouid=100969029515546209564&rtpof=true&sd=true">
+              <i class="fa-solid fa-arrow-up-right-from-square"></i> View Project
+            </a>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <img src="3.png" alt="Cyber Log Analysis" class="project-img" />
+          <div class="project-body">
+            <h3>Cyber Log Analysis</h3>
+            <div class="tags">
+              <span class="tag">Cybersecurity</span>
+              <span class="tag">Python</span>
+              <span class="tag">Excel</span>
+            </div>
+            <p>Created synthetic system logs and applied SOC-style rules to detect brute-force attempts and suspicious authentication patterns.</p>
+            <a class="btn secondary" target="_blank" rel="noopener noreferrer"
+               href="https://docs.google.com/document/d/1CgDV5w91RFHWYrbP95RF4eV7gOdve75rMuBah1vaY1I/edit?usp=sharing">
+              <i class="fa-solid fa-arrow-up-right-from-square"></i> View Project
+            </a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience -->
+  <section id="experience">
+    <div class="container">
+      <div class="section-title">
+        <h2>Experience</h2>
+        <p>Roles that strengthened my operations mindset, documentation habits, and analytical discipline.</p>
+      </div>
+
+      <div class="timeline">
+        <div class="role-card">
+          <div class="dot" aria-hidden="true"></div>
+          <div>
+            <h3>Teacher — Algebra I & Advanced Algebra I</h3>
+            <div class="org">IDEA Public Schools, San Antonio</div>
+            <div class="date">July 2025 – November 2025</div>
+            <p>Built structured performance trackers in Excel; identified trends and discrepancies similar to monitoring controls and audit checks.</p>
+          </div>
+        </div>
+
+        <div class="role-card">
+          <div class="dot" aria-hidden="true"></div>
+          <div>
+            <h3>Corps Member</h3>
+            <div class="org">Teach for America, San Antonio</div>
+            <div class="date">Summer 2025</div>
+            <p>Completed intensive training in culturally responsive instruction and operational execution under strict timelines.</p>
+          </div>
+        </div>
+
+        <div class="role-card">
+          <div class="dot" aria-hidden="true"></div>
+          <div>
+            <h3>Public Safety Dispatcher</h3>
+            <div class="org">Security Operations, Boston</div>
+            <div class="date">Feb 2024 – May 2025</div>
+            <p>Monitored alarms, CCTV, and access logs; documented events with accuracy and adherence to SOPs.</p>
+          </div>
+        </div>
+
+        <div class="role-card">
+          <div class="dot" aria-hidden="true"></div>
+          <div>
+            <h3>Junior Executive — HR & Admin</h3>
+            <div class="org">BRAC University Entrepreneurship Development Forum</div>
+            <div class="date">Mar 2022 – Jan 2023</div>
+            <p>Streamlined tracking workflows for member activities and event attendance; improved internal operations documentation.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact">
+    <div class="container">
+      <div class="section-title">
+        <h2>Contact</h2>
+        <p>Fastest way to reach me: email. I reply as soon as I can.</p>
+      </div>
+
+      <div class="contact-grid">
+        <div class="contact-item">
+          <div class="contact-icon" aria-hidden="true"><i class="fa-solid fa-envelope"></i></div>
+          <div>
+            <h3>Email</h3>
+            <p><a href="mailto:prajitgiri1221@gmail.com" style="color:var(--text); text-decoration:none; font-weight:800;">prajitgiri1221@gmail.com</a></p>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-icon" aria-hidden="true"><i class="fa-solid fa-location-dot"></i></div>
+          <div>
+            <h3>Location</h3>
+            <p>San Antonio, TX</p>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-icon" aria-hidden="true"><i class="fa-solid fa-language"></i></div>
+          <div>
+            <h3>Languages</h3>
+            <p>English (fluent), Nepali (native), Hindi (conversational), Bengali (basic)</p>
+          </div>
+        </div>
+
+        <div class="contact-item email-cta">
+          <div>
+            <h3>Send a message</h3>
+            <p>Click below to open your email app with a subject line ready.</p>
+          </div>
+          <a class="btn primary" href="mailto:prajitgiri1221@gmail.com?subject=Portfolio%20Inquiry%20-%20Prajit%20Giri&body=Hi%20Prajit%2C%0A%0AI%20saw%20your%20portfolio%20and%20wanted%20to%20reach%20out%20about%3A%0A%0A-%20Role%3A%0A-%20Company%3A%0A-%20Notes%3A%0A%0AThanks%2C%0A">
+            <i class="fa-solid fa-paper-plane"></i> Email Prajit
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-row">
+        <div class="social" aria-label="Social links">
+          <a href="https://github.com/prajit100" target="_blank" rel="noopener noreferrer" aria-label="GitHub" title="GitHub">
+            <i class="fa-brands fa-github"></i>
+          </a>
+          <a href="https://www.linkedin.com/in/drprazeet/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" title="LinkedIn">
+            <i class="fa-brands fa-linkedin-in"></i>
+          </a>
+          <a href="https://x.com/prajit_giri" target="_blank" rel="noopener noreferrer" aria-label="X" title="X">
+            <i class="fa-brands fa-x-twitter"></i>
+          </a>
+          <a href="https://www.facebook.com/dr.prazeet" target="_blank" rel="noopener noreferrer" aria-label="Facebook" title="Facebook">
+            <i class="fa-brands fa-facebook-f"></i>
+          </a>
+        </div>
+
+        <div class="copyright">
+          © <span id="year"></span> Prajit Giri. All Rights Reserved.
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // ===== Theme (persists) =====
+    const themeToggle = document.getElementById('themeToggle');
+    const themeIcon = themeToggle.querySelector('i');
+
+    function setTheme(mode){
+      if(mode === 'light'){
+        document.body.classList.add('light-theme');
+        themeIcon.classList.remove('fa-moon');
+        themeIcon.classList.add('fa-sun');
+      } else {
+        document.body.classList.remove('light-theme');
+        themeIcon.classList.remove('fa-sun');
+        themeIcon.classList.add('fa-moon');
+      }
+      localStorage.setItem('theme', mode);
+    }
+
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    setTheme(savedTheme);
+
+    themeToggle.addEventListener('click', () => {
+      const isLight = document.body.classList.contains('light-theme');
+      setTheme(isLight ? 'dark' : 'light');
+    });
+
+    // ===== Mobile menu =====
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+      const expanded = navLinks.classList.contains('active');
+      menuToggle.setAttribute('aria-label', expanded ? 'Close menu' : 'Open menu');
+      menuToggle.querySelector('i').classList.toggle('fa-bars');
+      menuToggle.querySelector('i').classList.toggle('fa-xmark');
+    });
+
+    // Close menu on link click (mobile)
+    document.querySelectorAll('.nav-link').forEach(link => {
+      link.addEventListener('click', () => navLinks.classList.remove('active'));
+    });
+
+    // ===== Active link highlighting + top progress glow =====
+    const sections = [...document.querySelectorAll('section[id]')];
+    const navAnchors = [...document.querySelectorAll('.nav-link')];
+    const topGlow = document.getElementById('topGlow');
+
+    function onScroll(){
+      const scrollY = window.scrollY;
+
+      // Progress bar
+      const docH = document.documentElement.scrollHeight - window.innerHeight;
+      const pct = docH > 0 ? (scrollY / docH) * 100 : 0;
+      topGlow.style.width = `${pct}%`;
+
+      // Active section
+      let currentId = 'home';
+      sections.forEach(sec => {
+        const top = sec.offsetTop - 110;
+        if(scrollY >= top) currentId = sec.id;
+      });
+
+      navAnchors.forEach(a => {
+        a.classList.toggle('active', a.getAttribute('href') === `#${currentId}`);
+      });
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    // ===== Footer year =====
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
